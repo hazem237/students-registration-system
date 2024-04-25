@@ -1,5 +1,5 @@
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from .models import Course, CourseSchedule
 
 def course_list_view(request):

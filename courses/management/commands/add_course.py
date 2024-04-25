@@ -5,7 +5,7 @@ from courses.models import Course
 class Command(BaseCommand):
     help = 'Adds sample courses to the database'
 
-    def handle(self, *args, **options):
+    def handle(self):
         self.stdout.write(self.style.SUCCESS('Adding sample courses...'))
 
         Course.objects.create(
@@ -14,7 +14,7 @@ class Command(BaseCommand):
             description='This course provides an introduction to computer science concepts...',
             instructor='Prof. Smith',
             capacity=30,
-            schedule_id=1 
+            schedule_id=2
         )
 
         self.stdout.write(self.style.SUCCESS('Sample courses added successfully!'))
