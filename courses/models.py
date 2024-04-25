@@ -1,7 +1,7 @@
 from django.db import models
 
 class Student(models.Model):
-    id = models.AutoField(primary_key=True)  # Explicitly define id as primary key
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=32)
     password = models.CharField(max_length=64)
     email = models.EmailField(unique=True)
@@ -16,12 +16,12 @@ class Course(models.Model):
     schedule = models.ForeignKey('CourseSchedule', on_delete=models.CASCADE)
 
 class StudentRegistration(models.Model):
-    id = models.AutoField(primary_key=True)  # Explicitly define id as primary key
+    id = models.AutoField(primary_key=True)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
 class CourseSchedule(models.Model):
-    id = models.AutoField(primary_key=True)  # Explicitly define id as primary key
+    id = models.AutoField(primary_key=True) 
     days = models.CharField(max_length=10)
     start_time = models.TimeField()
     end_time = models.TimeField()
