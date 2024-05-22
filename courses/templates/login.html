@@ -1,0 +1,35 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+{% if error_message %}
+<div class="alert alert-danger" role="alert">
+  {{ error_message }}
+</div>
+{% endif %}
+
+<form method="post" class='container'>
+
+  {% csrf_token %}
+
+  <div class="card p-3 mb-3 col-6 mx-auto align-self-center" style="width: 500px;">
+    <div class="row mb-3">
+      <label for="" class="col-sm-3 col-form-label">Username</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" name="username">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label for="" class="col-sm-3 col-form-label">Password</label>
+      <div class="col-sm-9">
+        <input type="password" class="form-control" name="password">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary col-sm-2 mx-auto">Login</button>
+
+  </div>
+</form>
+
+
+
+{% endblock %}

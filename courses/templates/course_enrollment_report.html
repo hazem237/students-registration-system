@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+
+{% block content %}
+<div class="container">
+
+    <h1>Course Enrollment Report</h1>
+
+    <h2>Total Enrollments: {{ total_enrollments }}</h2>
+    <h2>Most Popular Course: {{ most_popular_course.name }} ({{ most_popular_course.enrollment_count }} students)</h2>
+
+    <h3>Course Enrollment</h3>
+    <ul class="list-group">
+        {% for course in course_enrollment %}
+        <li class="list-group-item"><b>{{ course.name }}:</b>  {{ course.enrollment_count }} students</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Course Popularity Chart</h3>
+    <img src="data:image/png;base64,{{ chart }}" alt="Course Popularity Chart">
+
+</div>
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+{% block content %}
+
+<h1>Notifications</h1>
+
+        {% for notification in notifications %}
+            <li>{{ notification.message }}</li>
+        {% endfor %}
+
+
+
+{% endblock content %}

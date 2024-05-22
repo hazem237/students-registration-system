@@ -1,16 +1,10 @@
 {% extends "main.html" %}
 {% block content %}
 
-<h1>Course List</h1>
+<h1>my courses</h1>
 <div class="container">
-    <nav class="navbar navbar-light">
-    <form method="get" action="{% url 'courses' %}"  class="form-inline">
-        <input class="form-control mr-sm-2" type="text" name="q" placeholder="Search for courses..." value="{{ request.GET.q }}">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-</nav>
     {% if messages %}
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-success" role="alert">
             {% for message in messages %}
                 <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
             {% endfor %}
@@ -31,11 +25,11 @@
             <tbody>
                 {% for course in courses %}
                 <tr>
-                    <td rowspan="2"><a class="btn btn-primary" href="{% url "reg_course" course.code %}">register</a></td>
+                    <td rowspan="2"><a class="btn btn-danger" href="{% url "unreg_course" course.code %}">remove</a></td>
                     <td rowspan="2">{{course.code}}</td>
                     <td rowspan="2">{{course.name}}</td>
                     <td>{{course.description}}</td>
-                    <td rowspan="2">{{course.instructor}}</td>
+                    <td rowspan="2">{{course.instuctor}}</td>
                     <td rowspan="2">{{course.capacity}}</td>
                 </tr>
                 <tr>
