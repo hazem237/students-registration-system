@@ -1,12 +1,23 @@
 {% extends "main.html" %}
+
 {% block content %}
-
-<h1>Notifications</h1>
-
-        {% for notification in notifications %}
-            <li>{{ notification.message }}</li>
-        {% endfor %}
-
-
-
+<div class="container mt-5">
+    <h2>Notifications</h2>
+    <table class=" table table-striped">
+        <thead>
+            <th>date</th>
+            <th>message</th>
+        </thead>
+        <tbody>
+            {% for notification in notifications %}
+            <tr>
+                <td>{{ notification.timestamp }}</td>
+                <td>{{ notification.message }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 {% endblock content %}

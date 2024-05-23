@@ -168,13 +168,16 @@ def course_enrollment_report(request):
 @receiver(post_save, sender=Deadline)
 def send_notification_on_deadline_creation(sender, instance, created, **kwargs):
     if created:
-        message = f'A new deadline has been added: {instance.description}'
-        users = User.objects.all()
+        message = f'new message from admin: {instance.description}'
+        if instance.type == 'course_deadline' and instance.course:
+            registrations = StudentRegistration.objects.filter(course=instance.course)
+            users = [reg.student.user for reg in registrations]
+        else:
+            users = User.objects.all()
         for user in users:
             Notification.objects.create(user=user, message=message)
 
-
-def fetch_notifications(request):
-    notifications = Notification.objects.all()
-    data = {"notifications": [{"message": notification.message} for notification in notifications]}
-    return JsonResponse(data)
+@login_required
+def notifications(request):
+    notifications = Notification.objects.filter(user=request.user).order_by('-timestamp')
+    return render(request, 'notifications.html', {'notifications': notifications})

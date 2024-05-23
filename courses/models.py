@@ -42,10 +42,12 @@ class Deadline(models.Model):
     TYPE_CHOICES = (
         ('registration', 'Registration Deadline'),
         ('drop_add', 'Drop/Add Deadline'),
+        ('course_deadline', 'Course Deadline')
     )
     type = models.CharField(max_length=20, choices=TYPE_CHOICES)
     description = models.TextField()
     deadline_date = models.DateField()
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return f'{self.get_type_display()} - {self.description}'

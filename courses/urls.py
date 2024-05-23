@@ -13,6 +13,6 @@ urlpatterns = [
     path('student_courses/', views.student_courses, name='student_courses'),
     path('unreg_course/<str:code>/', views.unreg_course, name='unreg_course'),
     path('course_enrollment_report/', views.course_enrollment_report, name='course_enrollment_report'),
-    path('fetch_notifications/', views.fetch_notifications, name='fetch_notifications'),
+    path('notifications/', views.notifications, name='notifications'),
 
 ]
