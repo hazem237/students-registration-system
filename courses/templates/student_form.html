@@ -1,34 +1,35 @@
 {% extends "main.html" %}
 
 {% block content %}
-<h1>please complete user registration to continue to website!</h1>
-<form method="post">
-    
-    {% csrf_token %}
-
-
-  <div class="row mb-3">
-    <label for="" class="col-sm-2 col-form-label">Name</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="name" value="{{student.name}}" >
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label for="" class="col-sm-2 col-form-label">Major</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="major" value="{{student.major}}">
-    </div>
-  </div>
-
-  <div class="row mb-3">
-      <label for="" class="col-sm-2 col-form-label">Average</label>
-      <div class="col-sm-10">
-          <input type="number" class="form-control" name="avg" value="{{student.avg}}">
+<div class="container mt-5">
+    <h1 class="text-center">Please Complete User Registration to Continue</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" name="name" value="{{ student.name }}" placeholder="Enter your name">
+            </div>
         </div>
-    </div>
-    
-    <button type="submit" class="btn btn-primary">{% if student %} Update {% else %} Add {% endif %}</button>
-</form>
-
-{{data}}
+        
+        <div class="form-group row">
+            <label for="major" class="col-sm-2 col-form-label">Major</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="major" name="major" value="{{ student.major }}" placeholder="Enter your major">
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <label for="avg" class="col-sm-2 col-form-label">Average</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="avg" name="avg" value="{{ student.avg }}" placeholder="Enter your average">
+            </div>
+        </div>
+        
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">{% if student %} Update {% else %} Add {% endif %}</button>
+        </div>
+    </form>
+</div>
 {% endblock content %}

@@ -71,18 +71,21 @@ def user_logout(request):
 
 @login_required
 def add_student(request):
-    if request.method == 'POST':
-        name = request.POST.get('name')
-        major = request.POST.get('major')
-        avg = request.POST.get('avg')
-        student = Student()
-        student.name = name
-        student.major = major
-        student.avg = avg
-        student.user = request.user
-        student.save()
+    user = request.user
+    try:
+        student = Student.objects.get(user=user)
+        messages.warning(request, 'You have already completed your student registration.')
         return redirect('home')
-    return render(request, 'student_form.html')
+    except Student.DoesNotExist:
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            major = request.POST.get('major')
+            avg = request.POST.get('avg')
+            student = Student(name=name, major=major, avg=avg, user=user)
+            student.save()
+            messages.success(request, 'Student registration completed successfully.')
+            return redirect('home')
+        return render(request, 'student_form.html')
 
 @login_required
 def reg_course(request, code):

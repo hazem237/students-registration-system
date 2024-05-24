@@ -1,10 +1,44 @@
 {% extends "main.html" %}
 
 {% block content %}
-<div class="container">
-<h1>Welcom to the system</h1>
-<a href="{% url "courses" %}" class="btn btn-primary">
-    View courses
-</a>
+<div class="container mt-5">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to the Student Registration System</h1>
+        <p class="lead">Manage your courses and schedules effortlessly.</p>
+        <div class="text-center mt-5">
+            <a href="{% url 'add_student' %}" class="btn btn-secondary btn-lg">Complete Your Registration</a>
+        </div>
+        <hr class="my-4">
+        <p>To get started, view the available courses or manage your schedule.</p>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Courses</h5>
+                    <p class="card-text">Browse and register for courses that fit your schedule.</p>
+                    <a href="{% url 'courses' %}" class="btn btn-outline-primary">View Courses</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">My Schedule</h5>
+                    <p class="card-text">View and manage your current course schedule.</p>
+                    <a href="{% url 'student_courses' %}" class="btn btn-outline-primary">My Schedule</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Course Enrollment Report</h5>
+                    <p class="card-text">Get detailed reports on course enrollments.</p>
+                    <a href="{% url 'course_enrollment_report' %}" class="btn btn-outline-primary">View Report</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}
