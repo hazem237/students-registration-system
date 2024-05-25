@@ -21,9 +21,12 @@ def home(request):
 
 @login_required
 def courses(request, code=None):
-    user_id = request.user.id
-    student = Student.objects.get(user_id=user_id)
-    
+    try:
+        student = Student.objects.get(user=request.user)
+    except Student.DoesNotExist:
+        messages.warning(request, 'Please complete your student registration to access the courses.')
+        return redirect('add_student')
+
     registered_courses = StudentRegistration.objects.filter(student=student).values_list('course__code', flat=True)
     
     available_courses = Course.objects.exclude(code__in=registered_courses)
@@ -123,7 +126,11 @@ def reg_course(request, code):
 @login_required
 def student_courses(request):
     user_id = request.user.id
-    student = Student.objects.get(user_id = user_id)
+    try:
+        student = Student.objects.get(user_id=user_id)
+    except Student.DoesNotExist:
+        messages.warning(request, 'Please complete your student registration to view your courses.')
+        return redirect('add_student')
     student_courses_list = StudentRegistration.objects.filter(student = student)
     courses = []
     for reg in student_courses_list:
