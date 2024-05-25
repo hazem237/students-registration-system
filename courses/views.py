@@ -114,10 +114,6 @@ def reg_course(request, code):
 
     student_reg = StudentRegistration(student=student, course=course)
     student_reg.save()
-    
-    reg_courses = request.session.get('reg_courses', [])
-    reg_courses.append(code)
-    request.session['reg_courses'] = reg_courses
 
     messages.success(request, 'You have successfully registered for the course.')
     
